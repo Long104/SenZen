@@ -1,0 +1,23 @@
+# dependencies
+node_modules
+.pnp
+.pnp.*
+
+# misc
+.DS_Store
+frontend.pem
+
+.next
+
+# debug
+npm-debug.log*
+
+# env files (can opt-in for committing if needed)
+.env
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts

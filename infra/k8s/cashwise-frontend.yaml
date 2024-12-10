@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cashwise-fe-deployment
+  namespace: default
+  labels:
+    app.kubernetes.io/name: fe
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: fe
+      # app: cashwise-frontend
+  template:
+    metadata:
+      name: cashwise-frontend-pods
+      labels:
+        # app: cashwise-frontend
+        app.kubernetes.io/name: fe
+    spec:
+      containers:
+        - name: cashwise-frontend
+          image: long104/cashwise:v22
+          # imagePullPolicy: IfNotPresent
+          # imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+              name: cash-fe-port
+          # env:
+          #   - name: BASE_URL
+          #     valueFrom:
+          #       secretKeyRef:
+          #         name: fe-secret
+          #         key: BASE_URL
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cashwise-fe-service
+  namespace: default
+spec:
+  # type: NodePort
+  type: ClusterIP
+  selector:
+    app.kubernetes.io/name: fe
+  ports:
+    - name: cashfe-port
+      protocol: TCP
+      port: 3000
+      targetPort: cash-fe-port
+      # nodePort: 30001

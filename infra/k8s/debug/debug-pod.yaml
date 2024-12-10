@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: debug
+spec:
+  serviceAccountName: default  # Use the service account you need
+  containers:
+    - name: busybox
+      image: busybox
+      command: ["/bin/sh"]
+      stdin: true
+      tty: true
