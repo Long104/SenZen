@@ -39,21 +39,21 @@ export async function middleware(req: NextRequest) {
 			const exp = decoded.exp * 1000; // Convert to milliseconds
 			const currentTime = Date.now();
 
-			if (currentTime >= exp) {
-				return await handleLogout(); // Logout if expired
-			}
+			// if (currentTime >= exp) {
+			// 	return await handleLogout(); // Logout if expired
+			// }
 
 			// Validate the token with your backend
-			// const response = await fetch(
-			// 	process.env.NEXT_PUBLIC_BACKEND + "/validate-token",
-			// 	{
-			// 		headers: { Authorization: `Bearer ${token.value}` },
-			// 	},
-			// );
+			const response = await fetch(
+				process.env.NEXT_PUBLIC_BACKEND + "/validate-token",
+				{
+					headers: { Authorization: `Bearer ${token.value}` },
+				},
+			);
 
-			// if (!response.ok) {
-			// 	return await handleLogout(); // Logout if token is not valid
-			// }
+			if (!response.ok) {
+				return await handleLogout(); // Logout if token is not valid
+			}
 		} catch (error) {
 			console.error("Error decoding JWT:", error);
 			return await handleLogout(); // Logout on decoding error
@@ -70,10 +70,6 @@ export async function middleware(req: NextRequest) {
 	// return NextResponse.next(); // Continue to the requested route
 
 	return NextResponse.next({
-		// request: {
-		// 	// Apply new request headers
-		// 	headers: requestHeaders,
-		// },
 	});
 }
 

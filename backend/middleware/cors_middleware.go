@@ -3,6 +3,8 @@ package middleware
 import (
 	// "os"
 
+	"os"
+
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
 )
@@ -17,7 +19,7 @@ func CORSMiddleware() fiber.Handler {
 		AllowHeaders:     "Origin, Content-Type, Accept, Authorization",
 		// AllowOrigins:     "http://localhost:3000", // Set to your frontend origin
     // AllowOrigins: frontendOrigin,
-		AllowOrigins:     "http://cashwise.com", // Set to your frontend origin
+		AllowOrigins:     os.Getenv("FRONTEND_URL"), // Set to your frontend origin
 		AllowCredentials: true,                    // Allows cookies and credentials to be sent
 	})
 }
