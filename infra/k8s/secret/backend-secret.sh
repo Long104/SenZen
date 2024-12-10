@@ -1,10 +1,10 @@
 #!/bin/bash
 kubectl create secret generic backend-secret \
-  --from-literal=GOOGLE_CLIENT_ID=<password> \
-  --from-literal=GOOGLE_CLIENT_SECRET=<password> \
-  --from-literal=GITHUB_CLIENT_ID=<password> \
-  --from-literal=GITHUB_CLIENT_SECRET=<password> \
-  --from-literal=jwtSecretKey=<password> \
+  --from-literal=GOOGLE_CLIENT_ID=omg \
+  --from-literal=GOOGLE_CLIENT_SECRET=wow \
+  --from-literal=GITHUB_CLIENT_ID=wow \
+  --from-literal=GITHUB_CLIENT_SECRET=forwhat \
+  --from-literal=jwtSecretKey=testjwt \
   --from-literal=DB_HOST=postgres-service \
   --from-literal=DB_USER=myuser \
   --from-literal=DB_PASSWORD=mypassword \
