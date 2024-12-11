@@ -28,31 +28,31 @@ spec:
           volumeMounts:
             - mountPath: /var/lib/postgresql/data
               name: postgresdata
-          # Add the probes here
-          # livenessProbe:
-          #   exec:
-          #     command:
-          #       - pg_isready
-          #   initialDelaySeconds: 30
-          #   periodSeconds: 10
-          # readinessProbe:
-          #   exec:
-          #     command:
-          #       - pg_isready
-          #   initialDelaySeconds: 30
-          #   periodSeconds: 10
-          # # Add resource requests and limits here
-          # resources:
-          #   requests:
-          #     memory: "1Gi"
-          #     cpu: "500m"
-          #   limits:
-          #     memory: "2Gi"
-          #     cpu: "1"
       volumes:
         - name: postgresdata
-      #     persistentVolumeClaim:
-      #       claimName: postgres-volume-claim
+          persistentVolumeClaim:
+            claimName: postgres-pvc
+      # Add the probes here
+      # livenessProbe:
+      #   exec:
+      #     command:
+      #       - pg_isready
+      #   initialDelaySeconds: 30
+      #   periodSeconds: 10
+      # readinessProbe:
+      #   exec:
+      #     command:
+      #       - pg_isready
+      #   initialDelaySeconds: 30
+      #   periodSeconds: 10
+      # # Add resource requests and limits here
+      # resources:
+      #   requests:
+      #     memory: "1Gi"
+      #     cpu: "500m"
+      #   limits:
+      #     memory: "2Gi"
+      #     cpu: "1"
 ---
 apiVersion: v1
 kind: Service
