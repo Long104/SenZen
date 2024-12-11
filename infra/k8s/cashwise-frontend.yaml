@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - name: cashwise-frontend
-          image: long104/cashwise:v23
+          image: long104/cashwise:v24
           # imagePullPolicy: IfNotPresent
           # imagePullPolicy: Always
           ports:

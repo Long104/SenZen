@@ -23,14 +23,14 @@ const nextConfig: NextConfig = {
 			},
 		],
 	},
-	async rewrites() {
-		return [
-			{
-				source: "/:path*",
-				destination: "https://cashwise.localhost/:path*",
-			},
-		];
-	},
+	// async rewrites() {
+	// 	return [
+	// 		{
+	// 			source: "/:path*",
+	// 			destination: "https://cashwise.localhost/:path*",
+	// 		},
+	// 	];
+	// },
 	// async redirects() {
 	//     return [
 	//         {
