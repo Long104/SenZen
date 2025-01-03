@@ -5,7 +5,10 @@ metadata:
   namespace: default
 spec:
   accessModes:
-    - ReadWriteMany
+    # - ReadWriteMany
+    - ReadWriteOnce
   resources:
     requests:
       storage: 1Gi
+  # storageClassName: nfs-client-provisioner
+  # storageClassName: nfs-client-provisioner
