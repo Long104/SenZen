@@ -3,8 +3,7 @@ import React, { useEffect, useState } from "react";
 import useAuthStore from "@/zustand/auth";
 
 const Chat = () => {
-	const token = useAuthStore((state) => state.jwt);
-	const [message, setMessage] = useState<string>(""); // Input message
+	const token = useAuthStore((state) => state.jwt); const [message, setMessage] = useState<string>(""); // Input message
 	const [chatMessages, setChatMessages] = useState<
 		Array<{ user: string; message: string }>
 	>([]); // Store message with user info
@@ -22,8 +21,7 @@ const Chat = () => {
 		ws.onopen = () => {
 			console.log("Connected to WebSocket");
 			// Send a system message when connecting
-			ws.send(JSON.stringify({ type: "system", message: "User connected" }));
-		};
+			ws.send(JSON.stringify({ type: "system", message: "User connected" })); };
 
 		ws.onmessage = (event) => {
 			try {

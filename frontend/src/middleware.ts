@@ -7,10 +7,14 @@ export async function middleware(req: NextRequest) {
 
 	const handleLogout = async () => {
 		try {
-			await fetch(process.env.NEXT_PUBIC_BACKEND + "/logout", {
+			const response = await fetch(process.env.NEXT_PUBIC_BACKEND + "/logout", {
 				method: "POST",
 				credentials: "include",
 			});
+			if (!response.ok) {
+				console.error("Logout failed:", response.statusText);
+				// return;
+			}
 			return NextResponse.redirect(new URL("/sign-in", req.url));
 		} catch (error) {
 			console.error("Logout error:", error);
@@ -44,16 +48,15 @@ export async function middleware(req: NextRequest) {
 			}
 
 			// Validate the token with your backend
-			const response = await fetch(
-				process.env.NEXT_PUBLIC_BACKEND + "/validate-token",
-				{
-					headers: { Authorization: `Bearer ${token.value}` },
-				},
-			);
-
-			if (!response.ok) {
-				return await handleLogout(); // Logout if token is not valid
-			}
+			// const response = await fetch(
+			// 	process.env.NEXT_PUBLIC_BACKEND + "/validate-token",
+			// 	{
+			// 		headers: { Authorization: `Bearer ${token.value}` },
+			// 	},
+			// );
+			// if (!response.ok) {
+			// 	return await handleLogout(); // Logout if token is not valid
+			// }
 		} catch (error) {
 			console.error("Error decoding JWT:", error);
 			return await handleLogout(); // Logout on decoding error
