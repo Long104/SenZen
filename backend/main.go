@@ -6,6 +6,7 @@ import (
 
 	"github.com/gofiber/contrib/websocket"
 	"github.com/gofiber/fiber/v2"
+
 	// jwtware "github.com/gofiber/jwt/v3"
 	"github.com/joho/godotenv"
 	"github.com/long104/CashWise/config"
@@ -21,15 +22,13 @@ func main() {
 	config.ConnectDatabase()
 	app := fiber.New()
 
-
-	app.Use(middleware.CORSMiddleware())
-
-
-	app.Get("api/health", func(c *fiber.Ctx) error {
+	app.Get("/api/health", func(c *fiber.Ctx) error {
 		return c.SendString("health check ok")
 	})
 
-	app.Use("api/ws", func(c *fiber.Ctx) error {
+	app.Use(middleware.CORSMiddleware())
+
+	app.Use("/api/ws", func(c *fiber.Ctx) error {
 		// IsWebSocketUpgrade returns true if the client
 		// requested upgrade to the WebSocket protocol.
 		if websocket.IsWebSocketUpgrade(c) {

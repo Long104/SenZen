@@ -21,7 +21,7 @@ var hub = WebSocketHub{
 }
 
 func WsRoutes(app *fiber.App) {
-	app.Get("api/ws/:id", websocket.New(func(c *websocket.Conn) {
+	app.Get("/api/ws/:id", websocket.New(func(c *websocket.Conn) {
 		// token := c.Query("token")
 		// if result := middleware.IsValidToken(token); !result {
 		// 	log.Println("inValid token")

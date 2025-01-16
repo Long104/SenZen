@@ -11,8 +11,8 @@ func SetupOAuthRoutes(app *fiber.App) {
 	config.GoogleConfig()
 	config.GithubConfig()
 
-	app.Get("api/google_login", controllers.GoogleLogin)
+	app.Get("/api/google_login", controllers.GoogleLogin)
 	app.Get("/google_callback", controllers.GoogleCallback)
-	app.Get("api/github_login", controllers.GithubLogin)
+	app.Get("/api/github_login", controllers.GithubLogin)
 	app.Get("/github_callback", controllers.GithubCallback)
 }
